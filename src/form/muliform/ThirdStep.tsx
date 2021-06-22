@@ -45,6 +45,9 @@ const ThirdStep: React.FC<Props> = ({ control, errors }) => {
             />
           )}
         />
+        {errors.noAccident && (
+          <p style={{ color: "red" }}>{errors.noAccident.message}</p>
+        )}
         <Controller
           name="serviced"
           control={control}
@@ -65,6 +68,9 @@ const ThirdStep: React.FC<Props> = ({ control, errors }) => {
             />
           )}
         />
+        {errors.serviced && (
+          <p style={{ color: "red" }}>{errors.serviced.message}</p>
+        )}
       </FormGroup>
       <Controller
         name="state"
@@ -80,6 +86,7 @@ const ThirdStep: React.FC<Props> = ({ control, errors }) => {
           />
         )}
       />
+      {errors.state && <p style={{ color: "red" }}>{errors.state.message}</p>}
       <Controller
         name="color"
         control={control}
@@ -94,6 +101,7 @@ const ThirdStep: React.FC<Props> = ({ control, errors }) => {
           />
         )}
       />
+      {errors.color && <p style={{ color: "red" }}>{errors.color.message}</p>}
     </FormGroup>
   );
 };

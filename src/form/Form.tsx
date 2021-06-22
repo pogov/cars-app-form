@@ -28,8 +28,15 @@ export interface IData {
 const schema = yup.object().shape({
   brand: yup.string().required(),
   model: yup.string().required(),
-  year: yup.number().required(),
+  year: yup.date(),
   mileage: yup.number().required(),
+  fuelType: yup.string().required(),
+  gear: yup.string().required(),
+  cylinderCapacity: yup.number().required(),
+  noAccident: yup.boolean().required(),
+  serviced: yup.boolean().required(),
+  state: yup.string().required(),
+  color: yup.string().required(),
 });
 
 const Form: React.FC = () => {
@@ -44,7 +51,6 @@ const Form: React.FC = () => {
   });
 
   const onSubmit = (data: IData) => {
-    console.log("odpala");
     setStep(4);
     const year = data.year.$y;
     const newData = { ...data, year };
@@ -78,6 +84,11 @@ const Form: React.FC = () => {
     }
   };
 
+  const isDisabled = () => {
+    const errorsArray = Object.keys(errors);
+    return errorsArray.length > 0;
+  };
+
   return (
     <div className={styles.formWrapper}>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
@@ -87,12 +98,13 @@ const Form: React.FC = () => {
           <Button
             variant="outlined"
             onClick={() => setStep((prev) => prev + 1)}
+            disabled={isDisabled()}
           >
             NEXT
           </Button>
         )}
         {step === 3 && (
-          <Button variant="outlined" type="submit">
+          <Button variant="outlined" type="submit" disabled={isDisabled()}>
             SUBMIT
           </Button>
         )}

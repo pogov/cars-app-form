@@ -31,6 +31,9 @@ const SecondStep: React.FC<Props> = ({ control, errors }) => {
           />
         )}
       />
+      {errors.mileage && (
+        <p style={{ color: "red" }}>{errors.mileage.message}</p>
+      )}
       <Controller
         name="fuelType"
         control={control}
@@ -49,6 +52,9 @@ const SecondStep: React.FC<Props> = ({ control, errors }) => {
           </Select>
         )}
       />
+      {errors.fuelType && (
+        <p style={{ color: "red" }}>{errors.fuelType.message}</p>
+      )}
       <Controller
         name="gear"
         control={control}
@@ -66,6 +72,7 @@ const SecondStep: React.FC<Props> = ({ control, errors }) => {
           </Select>
         )}
       />
+      {errors.gear && <p style={{ color: "red" }}>{errors.gear.message}</p>}
       <Controller
         name="cylinderCapacity"
         control={control}
@@ -80,6 +87,9 @@ const SecondStep: React.FC<Props> = ({ control, errors }) => {
           />
         )}
       />
+      {errors.cylinderCapacity && (
+        <p style={{ color: "red" }}>{errors.cylinderCapacity.message}</p>
+      )}
     </FormGroup>
   );
 };

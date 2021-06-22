@@ -16,7 +16,6 @@ interface Props {
 }
 
 const FirstStep: React.FC<Props> = ({ control, errors }) => {
-  console.log(errors);
   return (
     <MuiPickersUtilsProvider utils={DayjsUtils}>
       <FormGroup>
@@ -49,6 +48,7 @@ const FirstStep: React.FC<Props> = ({ control, errors }) => {
             />
           )}
         />
+        {errors.model && <p style={{ color: "red" }}>{errors.model.message}</p>}
         <Controller
           name="year"
           control={control}
@@ -61,10 +61,13 @@ const FirstStep: React.FC<Props> = ({ control, errors }) => {
               autoOk={true}
               disableToolbar={true}
               inputVariant="outlined"
+              maxDate={new Date("2021-12-01")}
+              minDate={new Date("1950-01-01")}
               {...field}
             />
           )}
         />
+        {errors.year && <p style={{ color: "red" }}>{errors.year.message}</p>}
       </FormGroup>
     </MuiPickersUtilsProvider>
   );
